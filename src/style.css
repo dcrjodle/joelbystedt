@@ -58,15 +58,10 @@ h3 {
 
 p {
 	font-family: 'Quicksand', sans-serif; 
-<<<<<<< HEAD
 	line-height: 35px;
 	font-weight: 400;
 	font-size: 19px;
 
-=======
-	line-height: 25px;
-	font-weight: 400;
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 }
 
 a {
@@ -75,7 +70,6 @@ a {
   	text-decoration: none;
 }
 
-<<<<<<< HEAD
 ul {
 	border: solid black 0.5px;
 	border-radius: 10px;
@@ -105,8 +99,6 @@ li:hover {
 	background: #ef8b80;
 	cursor: pointer;
 } 
-=======
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 
 .container {
 	height: 80%;
@@ -119,17 +111,9 @@ li:hover {
 }
 
 .about {
-<<<<<<< HEAD
 	margin-top: 10%; 
 	margin-left: 15%;
 	margin-bottom: 20%;
-=======
-	position: absolute;
-	top: 50%;
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	margin-left: 15%;
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 	height: auto;	
 	width: 70%;
 	display: flex;
@@ -147,7 +131,6 @@ li:hover {
 	width: 40%;
 }
 
-<<<<<<< HEAD
 .projects {
 	margin-left: 15%;
 	margin-top: 30px;
@@ -167,8 +150,6 @@ li:hover {
 	width: 90%;
 }
 
-=======
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 .bold {
 	font-weight: 600;
 }
@@ -178,12 +159,7 @@ li:hover {
 }
 
 .hidden {
-<<<<<<< HEAD
 	color: rgba(0, 0, 0, 0);
-=======
-	opacity: 0;
-	height: 0;
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 }
 
 .red {
@@ -205,42 +181,7 @@ li:hover {
 }
 
 
-<<<<<<< HEAD
 
-=======
-@media screen and (max-width:700px) {
-	
-	h1, h2 {
-		font-size: 5vw;
-		line-height: 30px;
-	}
-	
-	.container {
-		width: 90%;
-		margin: 5%;
-	}
-	
-	.about {
-		flex-direction: column;
-		width: 90%;
-		margin: 5%;
-	}
-	
-	.about-p {
-		width: 100%;
-	}
-	
-	.profile {
-		width: 80%
-	}
-}
-
-@media screen and (max-width:1300px) { 
-	.container {
-		margin-top: 5%;
-	}
-}
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
 
 .toggle {
 	display: flex;
@@ -262,7 +203,6 @@ li:hover {
 .relative-position {
 	position:relative
 }
-<<<<<<< HEAD
 
 
 
@@ -304,7 +244,7 @@ li:hover {
 	}
 
 	h2 {
-		font-size: 22px;
+		font-size: 20px;
 		line-height: 35px;
 	}
 	
@@ -365,5 +305,3 @@ li:hover {
 		margin-top: 5%;
 	}
 }
-=======
->>>>>>> cc592c21e509ca52f1d45b29bb155fa68690c7f8
