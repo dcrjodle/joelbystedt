@@ -236,6 +236,10 @@ li:hover {
 	border-top: solid gray 0.5pt;
 }
 
+#hidden-btn {
+	display: none;
+}
+
 @media screen and (max-width:700px) {
 	
 	h1 {

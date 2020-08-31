@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+	
+    <title>Lista av svenska produkter</title>
+
+    <link rel="stylesheet" href="style.css">
+	  <link rel="stylesheet" href="body-width.css"
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	 
+    <h1>Lista av svenska produkter</h1>
+	<input type="text" id="search-bar" on placeholder="Search..">
+	 <button id="hidden-btn" onclick="loadGTIS()"></button>
+    <ul id="products">
+    </ul>
+	
+  </body>
+  <script>
+	
+	  document.getElementById("search-bar")
+    	.addEventListener("keyup", function(event) {
+			event.preventDefault();
+			if (event.keyCode === 13) {
+				document.getElementById("hidden-btn").click();
+			}
+		}); 
+	  
+ 	function loadGTIS() {
+		
+		alert("HEJ");
+		
+		
+		
+		var GTIN = [];
+		var ul = document.getElementById("products");
+		var apiUrl = "https://api.dabas.com/DABASService/V2/articles/XML?apikey=d49bc2ad-c016-459e-b009-0d26925506f3"
+		var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+	
+		fetch(proxyUrl+apiUrl)
+		.then(function(response) {
+
+		  if (!response.ok) {
+			throw new Error("HTTP error, status = " + response.status);
+		  }
+		  return response.text();
+		})
+		.then(function(xml) {
+			
+			var parser = new DOMParser();
+			var xmlDoc = parser.parseFromString(xml,"text/xml");
+			var x = xmlDoc.documentElement.childNodes;
+			
+			console.log(x);
+			
+			for(var i = 0; i < x.length; i++) {
+				
+				var li = document.createElement('li');
+				
+				for(var j = 0; j < x[i].childNodes.length; j++) {
+			
+					var name = x[i].childNodes[j].nodeName;
+						if (name == "GTIN") {
+							GTIN.push(x[i].childNodes[j].childNodes[0].nodeValue);
+					}
+				}
+				
+				li.appendChild(document.createTextNode(i));
+				ul.appendChild(li)
+				
+			}
+		});
+	}
+	  
+	  
+
+	var ul = document.getElementById("products");
+	  
+	function getProducts() {
+		//alert("alert")
+		ul.innerHTML = "";
+		
+		var text = document.getElementById('search-bar').value
+		var apiUrl = "https://api.dabas.com/DABASService/V2/articles/searchparameter/" + text + "/XML?apikey=d49bc2ad-c016-459e-b009-0d26925506f3"
+		var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+	
+		fetch(proxyUrl+apiUrl)
+		.then(function(response) {
+
+		  if (!response.ok) {
+			throw new Error("HTTP error, status = " + response.status);
+		  }
+		  return response.text();
+		})
+		.then(function(xml) {
+			
+			var parser = new DOMParser();
+			var xmlDoc = parser.parseFromString(xml,"text/xml");
+			var x = xmlDoc.documentElement.childNodes;
+			var artikel = "";
+			console.log(x);
+			
+			for(var i = 0; i < x.length; i++) {
+				
+				for(var j = 0; j < x[i].childNodes.length; j++) {
+					
+					var li = document.createElement('li');
+					var name = x[i].childNodes[j].nodeName;//childNodes[0].nodeValue;//getElementsByTagName("Artikelbenamning")[i].childNodes[0].nodeValue; //.childNodes[0].nodeValue;
+					//console.log(name)
+					if (name == "Artikelbenamning") {
+						artikel = x[i].childNodes[j].childNodes[0].nodeValue;
+
+						
+						/*listItem.innerHTML = artikel;					
+						myList.appendChild(listItem);
+						//console.log(artikel);
+					}
+					
+					if (name == "Varumarke") {
+						artikel += " - " + x[i].childNodes[j].childNodes[0].nodeValue
+					}
+					
+					if (name == "GTIN") {
+						var gtin = x[i].childNodes[j].childNodes[0].nodeValue;
+						var apiUrl = "http://api.dabas.com/DABASService/V2/article/gtin/" + gtin + "/XML?apikey=d49bc2ad-c016-459e-b009-0d26925506f3"
+						var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+
+						fetch(proxyUrl+apiUrl)
+						.then(function(response) {
+
+						  if (!response.ok) {
+							throw new Error("HTTP error, status = " + response.status);
+						  }
+						  return response.text();
+						})
+						.then(function(xml) {
+							var parser2 = new DOMParser();
+							var xmlDoc2 = parser2.parseFromString(xml,"text/xml");
+							var x2 = xmlDoc2.documentElement.childNodes;
+							console.log(x2);
+
+							for(var m = 0; m < x2.length; m++) {
+
+								for(var n = 0; n < x2[m].childNodes.length; n++) {
+									
+									
+								}
+							}
+						}
+						
+					}
+
+
+					console.log(ul)
+				}
+				
+				//var h = document.createElement("s")
+				li.appendChild(document.createTextNode(artikel));
+				ul.appendChild(li)
+			}
+
+
+		  /*for(var i = 0; i < json.length; i++) {
+			var listItem = document.createElement('li');
+			listItem.innerHTML = '<strong>' + json[i].Artikelbenamning + '</strong>';
+			listItem.innerHTML +=' can be found in ' + json.[i].Location + '.';
+			listItem.innerHTML +=' Cost: <strong>£' + json.[i].Price + '</strong>';
+			myList.appendChild(listItem);
+		  
+		})
+		/*.catch(function(error) {
+		  var p = document.createElement('p');
+		  p.appendChild(
+			document.createTextNode('Error: ' + error.message)
+		  );
+		  document.body.insertBefore(p, myList);
+		});
+	}
+	  */
+
+  </script>
+</html>
